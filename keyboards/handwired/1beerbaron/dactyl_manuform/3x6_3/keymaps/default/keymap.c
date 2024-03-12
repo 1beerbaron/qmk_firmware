@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 * ,------------------------------------------          ------------------------------------------.
 * |      |   {  |   }  |   [  |   ]  |      |          |      |      |      |      |      |      |
 * |------------------------------------------          ------------------------------------------|
-* |      |   !  |   =  |   $  |   _  |   #  |          |      |      |      |      |      |      |
+* |      |   !  |   $  |   _  |   #  |   =  |          |      |      |      |      |      |      |
 * |------------------------------------------          ------------------------------------------|
 * |      |   `  |   @  |   %  |   &  |   ^  |          |      |      |      |      |      |      |
 * `------------------------------------------          ------------------------------------------'
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_SYM] = LAYOUT_dactyl_3x6_3(
  KC_NO, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_LEFT_BRACKET, KC_RIGHT_BRACKET, KC_NO,          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
- KC_NO, KC_EXCLAIM, KC_EQUAL, KC_DOLLAR, KC_UNDERSCORE, KC_HASH,          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+ KC_NO, KC_EXCLAIM, KC_DOLLAR, KC_UNDERSCORE, KC_HASH, KC_EQUAL,          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
  KC_NO, KC_GRAVE, KC_AT, KC_PERCENT, KC_AMPERSAND, KC_CIRCUMFLEX,          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
                             KC_LEFT_PAREN, KC_RIGHT_PAREN, KC_TILDE,          KC_NO, KC_TRNS, KC_NO
 ),
