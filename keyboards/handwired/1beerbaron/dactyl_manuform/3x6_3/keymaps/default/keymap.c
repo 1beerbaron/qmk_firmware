@@ -12,6 +12,23 @@ enum layers {
   _RESETRIGHT
 };
 
+// Tap Dance declarations
+enum {
+    TD_PAREN,
+    TD_CURLY_BRACE,
+    TD_BRACKET
+};
+
+// Tap Dance definitions
+tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for open parenthesis, twice for close parenthesis
+    [TD_PAREN] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_RPRN),
+    // Tap once for open curly brace, twice for close curly brace
+    [TD_CURLY_BRACE] = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
+    // Tap once for open bracket, twice for close bracket
+    [TD_BRACKET] = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
+};
+
 #define BACK_TAB LSFT(KC_TAB)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -35,25 +52,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 *                            KC_NO, KC_NO, KC_NO,          KC_NO, KC_NO, KC_NO
 *),
 */
-    
-    
-    
-    
+
+
+
+
 /* _DEFAULT
 * ,------------------------------------------          ------------------------------------------.
 * | (_FUNCTION) |   J  |   C  |   Y  |   F  |   K  |          |   Z  |   L  | , <  |   U  |   Q  | Win+Alt+K (Mute) |
 * |------------------------------------------          ------------------------------------------|
-* |BackTab|   R  |   S  |   T  |   H  |   P  |          |   W  |   N  |   A  |   I  |   I  | ' "  |
+* |BackTab|   R  |   S  |   T  |   H  |   P  |          |   W  |   N  |   A  |   I  |   I  | \ |  |
 * |------------------------------------------          ------------------------------------------|
-* |  Esc | / ? |   V  |   G  |   D  |   B  |          |   X  |   M  | . >  |  ; : |  \ | | Ctrl+Alt+Del |
+* |  Esc |   ?  |   V  |   G  |   D  |   B  |          |   X  |   M  | . >  |  ; : | ' "  | Ctrl+Alt+Del |
 * `------------------------------------------          ------------------------------------------'
 *                      |BackSpace (_COMBO)|   E (_NUM) |  Tab |          | Enter| Space (_SYM) |  Del (_NAV) |
 *                      `---------------------          ----------------------'
 */
 [_DEFAULT] = LAYOUT_dactyl_3x6_3(
     MO(_FUNCTION), KC_J, KC_C, KC_Y, KC_F, KC_K,          KC_Z, KC_L, KC_COMMA, KC_U, KC_Q, LAG(KC_K),
-    BACK_TAB, MT(MOD_LGUI, KC_R), MT(MOD_LALT, KC_S), MT(MOD_LSFT, KC_T), MT(MOD_LCTL, KC_H), KC_P,          KC_W, MT(MOD_RCTL, KC_N), MT(MOD_RSFT, KC_A), MT(MOD_LALT, KC_I), MT(MOD_RGUI, KC_O), KC_QUOT,
-    KC_ESC, KC_SLSH, KC_V, KC_G, KC_D, KC_B,          KC_X, KC_M, KC_DOT, KC_SCLN, KC_BSLS, LCA(KC_DEL),
+    BACK_TAB, MT(MOD_LGUI, KC_R), MT(MOD_LALT, KC_S), MT(MOD_LSFT, KC_T), MT(MOD_LCTL, KC_H), KC_P,          KC_W, MT(MOD_RCTL, KC_N), MT(MOD_RSFT, KC_A), MT(MOD_LALT, KC_I), MT(MOD_RGUI, KC_O), KC_BSLS,
+    KC_ESC, KC_QUESTION, KC_V, KC_G, KC_D, KC_B,          KC_X, KC_M, KC_DOT, KC_SCLN, KC_QUOT, LCA(KC_DEL),
                                LT(_COMBO, KC_BSPC), LT(_NUM, KC_E), KC_TAB,          KC_ENT, LT(_SYM, KC_SPC), LT(_NAV, KC_DEL)
 ),
 
@@ -79,21 +96,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* _SYM
 * ,------------------------------------------          ------------------------------------------.
-* |      |   {  |   }  |   [  |   ]  |      |          |      |      |      |      |      |      |
+* |      |      |      |      |      |      |          |      |      |      |      |      |      |
 * |------------------------------------------          ------------------------------------------|
-* |      |   !  |   =  |   $  |   _  |   #  |          |      |      |      |      |      |      |
+* |      |   _  |   $  |   |  |   #  |  [ ] |          |      |   /  |   \  |   !  |   =  |      |
 * |------------------------------------------          ------------------------------------------|
-* |      |   `  |   @  |   %  |   &  |   ^  |          |      |      |      |      |      |      |
+* |      |   @  |   %  |   =  |   &  |      |          |      |   ^  |   ~  |   `  |      |      |
 * `------------------------------------------          ------------------------------------------'
-*                      |   (  |   )  |   ~  |          |      | TRNS |      |
+*                      |  ( ) |   |  |  { } |          |      | TRNS |      |
 *                      `---------------------          ---------------------'
 */
 
 [_SYM] = LAYOUT_dactyl_3x6_3(
- KC_NO, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_LEFT_BRACKET, KC_RIGHT_BRACKET, KC_NO,          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
- KC_NO, KC_EXCLAIM, KC_EQUAL, KC_DOLLAR, KC_UNDERSCORE, KC_HASH,          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
- KC_NO, KC_GRAVE, KC_AT, KC_PERCENT, KC_AMPERSAND, KC_CIRCUMFLEX,          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-                            KC_LEFT_PAREN, KC_RIGHT_PAREN, KC_TILDE,          KC_NO, KC_TRNS, KC_NO
+ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+ KC_NO, KC_UNDERSCORE, KC_DOLLAR, KC_PIPE, KC_HASH, TD_BRACKET,          KC_NO, KC_SLASH, KC_BACKSLASH, KC_EXCLAIM, KC_EQUAL, KC_NO,
+ KC_NO, KC_AT, KC_PERCENT, KC_PERCENT, KC_EQUAL, KC_NO,          KC_NO, KC_CIRCUMFLEX, KC_TILDE, KC_GRAVE, KC_NO, KC_NO,
+                            TD_PAREN, KC_PIPE, TD_CURLY_BRACE,          KC_NO, KC_TRNS, KC_NO
 ),
 
 /* _COMBO

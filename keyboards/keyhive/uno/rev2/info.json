@@ -14,7 +14,7 @@
     },
     "encoder": {
         "rotary": [
-            {"pin_a": "B2", "pin_b": "B3"}
+            {"pin_a": "B2", "pin_b": "B3", "resolution": 1}
         ]
     },
     "processor": "atmega32u4",
