@@ -18,7 +18,7 @@
 
 // Defines names for use in layer keycodes and the keymap
 enum layer_names {
-    _BASW,
+    _BASE,
     _NUM,
     _SYM,
     _NAV,
@@ -30,7 +30,8 @@ enum layer_names {
 enum {
     TD_PAREN,
     TD_CURLY_BRACE,
-    TD_BRACKET
+    TD_BRACKET,
+    TD_TAB_BACKTAB
 };
 
 // Tap Dance definitions
@@ -41,6 +42,8 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_CURLY_BRACE] = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
     // Tap once for open bracket, twice for close bracket
     [TD_BRACKET] = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
+    // Tap once for open bracket, twice for close bracket
+    [TD_TAB_BACKTAB] = ACTION_TAP_DANCE_DOUBLE(KC_TAB, BACK_TAB),
 };
 
 const uint16_t PROGMEM LAYER_COMBO[] = {KC_BACKSPACE, KC_E, COMBO_END};
@@ -53,8 +56,6 @@ combo_t key_combos[] = {
     COMBO(LAYER_SYM, MO(_SYM)),
     COMBO(LAYER_NAV, MO(_NAV)),
 };
-
-#define BACK_TAB LSFT(KC_TAB)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -75,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	    KC_J,               KC_C,               KC_Y,				KC_F,				KC_K,                               KC_Z,       KC_L,				KC_COMMA,			KC_U,				KC_Q,
 	    MT(MOD_LGUI, KC_R), MT(MOD_LALT, KC_S), MT(MOD_LSFT, KC_T),	MT(MOD_LCTL, KC_H),	KC_P,                               KC_W,       MT(MOD_LCTL, KC_N), MT(MOD_LSFT, KC_A), MT(MOD_LALT, KC_I),	MT(MOD_LGUI, KC_O),
 	    KC_QUESTION,        KC_V,				KC_G,				KC_D,				KC_B,                               KC_X,	    KC_M,				KC_DOT,			    KC_SEMICOLON,		KC_QUOTE,
-	KC_NO,                                      KC_BACKSPACE,		KC_E,               KC_TAB, MO(_FUNC),  KC_AUDIO_MUTE,  KC_ENTER,   KC_SPACE,			KC_DELETE,		                                            KC_HOME
+	KC_NO,                                      KC_BACKSPACE,		KC_E,               KC_TAB, MO(_FUNC),  KC_AUDIO_MUTE,  KC_ENTER,   KC_SPACE,			KC_DELETE,		                                            KC_NO
 ),
 
 /* NUM
@@ -112,10 +113,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *          `-----'   `--------------------'            `--------------------'   `-----'
  */
 [_SYM] = LAYOUT(
-	        KC_NO,          KC_NO,      KC_NO,		KC_NO,          KC_NO,                          KC_NO,      KC_NO,          KC_NO,      KC_NO,      KC_NO,
-	        KC_UNDERSCORE,  KC_DOLLAR,  KC_PIPE,    KC_HASH,        KC_BACKSLASH,                   KC_NO,      KC_CIRCUMFLEX,  KC_EXCLAIM, KC_TILD,    KC_TILDE,
-	        KC_AT,          KC_PERCENT, KC_EQUAL,   KC_AMPERSAND,   KC_SLASH,                       KC_NO,      KC_NO,          KC_NO,      KC_NO,      KC_NO,
-	KC_1,                               TD_BRACKET, TD_PAREN,       TD_CURLY_BRACE, KC_NO,  KC_NO,  KC_TRNS,    KC_TRNS,        KC_NO,                          KC_NO
+	        KC_CIRCUMFLEX,  KC_GRAVE,   KC_TILDE,       KC_EXCLAIM,     KC_NO,                              KC_NO,      KC_NO,      KC_NO,  KC_NO,  KC_NO,
+	        KC_UNDERSCORE,  KC_DOLLAR,  KC_PIPE,        KC_HASH,        KC_BACKSLASH,                       KC_NO,      KC_NO,      KC_NO,  KC_NO,  KC_NO,
+	        KC_AT,          KC_PERCENT, KC_EQUAL,       KC_AMPERSAND,   KC_SLASH,                           KC_NO,      KC_NO,      KC_NO,  KC_NO,  KC_NO,
+	KC_NO,                               TD(TD_BRACKET), TD(TD_PAREN),   TD(TD_CURLY_BRACE), KC_NO,  KC_NO,  KC_TRNS,    KC_TRNS,    KC_NO,                  KC_NO
 ),
 
 /* NAV
@@ -172,9 +173,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *          `-----'   `--------------------'            `--------------------'   `-----'
  */
 [_FUNC] =  LAYOUT(
-	        KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,                  KC_NO,	KC_F9,  KC_F10, KC_F11, KC_F12,
-	        KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,                  KC_NO,	KC_F5,  KC_F6,  KC_F7,  KC_F8,
-	        KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,                  KC_NO,	KC_F1,  KC_F2,  KC_F3,  KC_F4,
-	KC_NO,                  KC_NO,  KC_NO,	KC_NO, KC_TRNS, KC_NO,  KC_NO,	KC_NO,  KC_NO,                  KC_NO
+	        KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                      KC_NO,	KC_F9,  KC_F10, KC_F11, KC_F12,
+	        KC_LGUI,    KC_LALT,    KC_LSFT,    KC_LCTL,    KC_NO,                      KC_NO,	KC_F5,  KC_F6,  KC_F7,  KC_F8,
+	        KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                      KC_NO,	KC_F1,  KC_F2,  KC_F3,  KC_F4,
+	KC_NO,                          KC_NO,      KC_NO,      KC_NO,  KC_TRNS,    KC_NO,  KC_NO,	KC_NO,  KC_NO,                  KC_NO
 ),
 };

@@ -16,3 +16,4 @@ SPLIT_KEYBOARD = yes     # Enables split functionality
 ENCODER_ENABLE = yes	 # Enables the encoders
 COMBO_ENABLE = yes		 # Enables chording
 CAPS_WORD_ENABLE = yes	 # Enables caps word
+TAP_DANCE_ENABLE = yes
