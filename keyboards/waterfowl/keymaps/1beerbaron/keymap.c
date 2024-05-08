@@ -31,7 +31,13 @@ enum {
     TD_PAREN,
     TD_CURLY_BRACE,
     TD_BRACKET,
-    TD_TAB_BACKTAB
+    TD_TAB_BACKTAB,
+    TD_J_ESC
+};
+
+const uint16_t PROGMEM esc_combo[] = {MT(MOD_LCTL, KC_H), LT(_NUM, KC_D), COMBO_END};
+combo_t key_combos[] = {
+    COMBO(esc_combo, KC_ESC),
 };
 
 // Tap Dance definitions
@@ -44,12 +50,8 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_BRACKET] = ACTION_TAP_DANCE_DOUBLE(KC_LEFT_BRACKET, KC_RIGHT_BRACKET),
     // Tap once for open bracket, twice for close bracket
     [TD_TAB_BACKTAB] = ACTION_TAP_DANCE_DOUBLE(KC_TAB, BACK_TAB),
-};
-
-const uint16_t PROGMEM ESC_COMBO[] = {MT(MOD_LCTL, KC_H), KC_D, COMBO_END};
-const uint16_t PROGMEM LAYER_FUNC[] = {MT(MOD_LSFT, KC_T), KC_Y, COMBO_END};
-combo_t key_combos[] = {
-    COMBO(ESC_COMBO, KC_ESCAPE),
+    // Tap once for J, twice for escape
+    [TD_J_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_J, KC_ESC),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -68,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *          `-----'   `--------------------'            `--------------------'   `-----'
  */
 [_BASE] = LAYOUT(
-	    KC_J,               KC_C,               LT(_FUNC, KC_Y),				KC_F,				KC_K,                               KC_Z,       KC_L,				KC_COMMA,			KC_U,				KC_Q,
+	    TD(TD_J_ESC),               KC_C,               LT(_FUNC, KC_Y),				KC_F,				KC_K,                               KC_Z,       KC_L,				KC_COMMA,			KC_U,				KC_Q,
 	    MT(MOD_LGUI, KC_R), MT(MOD_LALT, KC_S), MT(MOD_LSFT, KC_T),	MT(MOD_LCTL, KC_H),	KC_P,                               KC_W,       MT(MOD_LCTL, KC_N), MT(MOD_RSFT, KC_A), MT(MOD_LALT, KC_I),	MT(MOD_LGUI, KC_O),
 	    KC_QUESTION,        KC_V,				LT(_COMBO, KC_G),				LT(_NUM, KC_D),				KC_B,                               KC_X,	    LT(_NAV, KC_M),				LT(_SYM, KC_DOT),			    KC_SEMICOLON,		KC_QUOTE,
 	KC_NO,                                      KC_BACKSPACE,		KC_E,               KC_TAB, MO(_FUNC),  KC_AUDIO_MUTE,  KC_ENTER,   KC_SPACE,			KC_DELETE,		                                            KC_NO
