@@ -46,23 +46,23 @@ void tk_reset(tap_dance_state_t *state, void *user_data);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(/* Base */
-                 TD(TAPPY_KEY),KC_HOME, KC_PGUP,
-                 KC_ESC,    KC_END,     KC_PGDN,
+                 TD(TAPPY_KEY),KC_PGDN, KC_PGUP,
+                 KC_ESC,    KC_F11,     LSFT(KC_S),
 
                             KC_UP,
                  KC_LEFT,   KC_DOWN,    KC_RIGHT),
     [_FN0] = LAYOUT(/* function layer */
-                 KC_TRNS,   KC_PAUS,    KC_VOLU,
+                 KC_TRNS,   LALT(KC_F4),    KC_VOLU,
                  KC_ENTER,  KC_SCRL,    KC_VOLD,
 
                             KC_TRNS,
                  KC_TRNS,   KC_TRNS,    KC_TRNS),
     [_ML1] = LAYOUT(/* media function layer, toggled on a single tap */
-                 KC_TRNS,   LCTL(KC_PLUS),    KC_TRNS,
-                 KC_ESC,   LCTL(KC_MINUS),    KC_TRNS,
+                 KC_TRNS,   KC_TRNS,    LCTL(KC_PLUS),
+                 KC_ESC,   KC_F11,    LCTL(KC_MINUS),
 
-                            KC_F11,
-                 LSFT(KC_S),   KC_ESC,    KC_SPACE,
+                            KC_PGUP,
+                 KC_DOWN,   KC_PGDN,    KC_UP),
 };
 
 //determine the current tap dance state
