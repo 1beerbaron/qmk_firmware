@@ -46,7 +46,7 @@ void tk_reset(tap_dance_state_t *state, void *user_data);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(/* Base */
-                 TD(TAPPY_KEY),KC_PGDN, KC_PGUP,
+                 TD(TAPPY_KEY),KC_END, KC_HOME,
                  KC_ESC,    KC_SPACE,     LSFT(KC_S),
 
                             KC_UP,
