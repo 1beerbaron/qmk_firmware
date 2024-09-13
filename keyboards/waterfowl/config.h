@@ -17,8 +17,7 @@
 #pragma once
 
 #define OLED_DISPLAY_128X64
-#define SPLIT_MODS_ENABLE
-#define SPLIT_WPM_ENABLE
+
 #define SPLIT_USB_DETECT
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 #define BACK_TAB LSFT(KC_TAB)
